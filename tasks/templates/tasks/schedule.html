@@ -1,0 +1,39 @@
+{% extends '_layouts/base.html' %}
+
+ {% block title %}{{ object.name }} | Lists | {{ block.super }}{% endblock title %}
+
+ {% block headline %}
+ <h1>{{ object.name }}</h1>
+ <h2>Your Lists</h2>
+ {% endblock headline %}
+
+ {% block content %}
+ {% regroup object.tasks.all by when_Deadline|date:"Y/m/d" as day_list %}
+ {% for day in day_list %}
+ <div class="panel panel-default">
+     <div class="panel-heading">
+         <h1 class="panel-title">{{ day.grouper }}</h1>
+     </div>
+     <table class="table">
+         <thead>
+             <tr>
+                 <th>Client</th>
+                 <th>Time</th>
+                 <th>Task</th>
+                 <th>Supervisor(s)</th>
+             </tr>
+         </thead>
+         <tbody>
+             {% for task in day.list %}
+             <tr>
+                 <td>{{ task.client }}</td>
+                 <td>{{ task.when_Deadline|date:"h:i A" }}</td>
+                 <td>{{ task.name }}</td>
+                 <td>{{ task.supervisor }}</td>
+             </tr>
+             {% endfor %}
+         </tbody>
+     </table>
+ </div>
+ {% endfor %}
+ {% endblock %}

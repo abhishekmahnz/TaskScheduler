@@ -1,0 +1,7 @@
+{% extends '_layouts/base.html' %}
+
+{% block headline %}<h2>Welcome to the Task Scheduler !</h2>{% endblock headline %}
+
+{% block content %}
+<p>{% if user.is_authenticated %} Welcome, {{ user.username }}{% endif %}</p>
+{% endblock %}
