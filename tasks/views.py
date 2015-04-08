@@ -138,7 +138,7 @@ class TaskDetailView(views.LoginRequiredMixin, generic.DetailView):
             })
             return context
         
-        # This method gives error that 'Task' is not iterable
+        # This method gives error that 'Task' is not iterable.
         def post(self, request, *args, **kwargs):
             self.object = self.get_object()
             if 'save' in request.POST:
